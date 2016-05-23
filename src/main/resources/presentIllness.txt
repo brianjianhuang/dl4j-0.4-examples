@@ -1,0 +1,4 @@
+i am a person.
+you are not a person.
+this is a dog.
+that is  cat.
