@@ -32,7 +32,9 @@ public class TSNEStandardExample {
         List<String> cacheList = new ArrayList<>();
 
         log.info("Load & Vectorize data....");
-        File wordFile = new ClassPathResource("words.txt").getFile();
+        //  File wordFile = new ClassPathResource("words.txt").getFile();
+
+        File wordFile = new ClassPathResource("word2vecNoteEvnetsOutput.txt").getFile();
         Pair<InMemoryLookupTable,VocabCache> vectors = WordVectorSerializer.loadTxt(wordFile);
         VocabCache cache = vectors.getSecond();
         INDArray weights = vectors.getFirst().getSyn0();

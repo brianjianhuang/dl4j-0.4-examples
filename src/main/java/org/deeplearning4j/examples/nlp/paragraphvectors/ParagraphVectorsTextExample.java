@@ -1,5 +1,6 @@
 package org.deeplearning4j.examples.nlp.paragraphvectors;
 
+import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
 import org.deeplearning4j.models.paragraphvectors.ParagraphVectors;
 import org.deeplearning4j.models.word2vec.wordstore.inmemory.InMemoryLookupCache;
 import org.deeplearning4j.text.sentenceiterator.SentenceIterator;
@@ -29,7 +30,9 @@ public class ParagraphVectorsTextExample {
     private static final Logger log = LoggerFactory.getLogger(ParagraphVectorsTextExample.class);
 
     public static void main(String[] args) throws Exception {
-        ClassPathResource resource = new ClassPathResource("/raw_sentences.txt");
+        ClassPathResource resource = new ClassPathResource("/raw_sentences_1.txt");
+
+       //ClassPathResource resource = new ClassPathResource("presentIllness.txt");
         File file = resource.getFile();
         SentenceIterator iter = new BasicLineIterator(file);
 
@@ -63,6 +66,8 @@ public class ParagraphVectorsTextExample {
 
         vec.fit();
 
+        WordVectorSerializer.writeWordVectors(vec, "ParagraphVectorsTextExample.txt");
+
         /*
             In training corpus we have few lines that contain pretty close words invloved.
             These sentences should be pretty close to each other in vector space
@@ -80,7 +85,7 @@ public class ParagraphVectorsTextExample {
         double similarity1 = vec.similarity("DOC_9835", "DOC_12492");
         log.info("9835/12492 similarity: " + similarity1);
 
-        double similarity2 = vec.similarity("DOC_3720", "DOC_16392");
+        double similarity2 = vec.similarity("DOC_3720", "DOC_6347");
         log.info("3720/16392 similarity: " + similarity2);
 
         double similarity3 = vec.similarity("DOC_6347", "DOC_3720");
